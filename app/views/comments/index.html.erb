@@ -1,11 +1,9 @@
 <h1>Comments#index</h1>
 <p>Find me in app/views/comments/index.html.erb</p>
 
-<p>
-  <span>コメント元のツイート内容: </span><%= link_to @tweet.body, tweet_path(id: @tweet.id) %>
+<p><span>コメント元のツイート内容: </span><%= link_to @tweet.body, tweet_path(id: @tweet.id) %></p>
 <% if user_signed_in? %>
-  <span>　</span>
-  <%= link_to "コメントする", new_tweet_comment_path(tweet_id: @tweet.id) %>
+  <p><span></span><%= link_to "コメントする", new_tweet_comment_path(tweet_id: @tweet.id) %></p>
 <% end %>
 </p>
 <hr>

@@ -4,10 +4,22 @@
 <hr>
 <p><span>email: </span><%= @user.email %></p>
 <p><span>ツイート内容: </span><%= @tweet.body %></p>
+<p><%= link_to "コメントする", new_tweet_comment_path(tweet_id: @tweet.id) %></p>
+<% if current_user != @tweet.user %>
+  <% if @tweet.user.followed_by?(current_user) %>
+    <p><%= link_to "フォロー済み", user_relationships_path(user_id: @tweet.user.id), method: :delete %></p>
+  <% else %>
+    <p><%= link_to "フォローする", user_relationships_path(user_id: @tweet.user.id), method: :post %></p>
+  <% end %>
+<% end %>
 <hr>
 <br>
 
-<p>コメント一覧</p>
+<p>
+  <span>コメント一覧（コメント数: </span>
+  <%= @tweet.comments.count %>
+  <span>）</span>
+</p>
 <% @comments.each do |comment| %>
   <hr>
   <p><span>email: </span><%= link_to comment.user.email, user_path(id: comment.user.id) %></p>

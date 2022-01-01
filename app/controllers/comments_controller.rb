@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
   def index
     @tweet = Tweet.find(params[:tweet_id])
-    @comments = Comment.all
+    @comments = Comment.where(tweet_id: @tweet.id)
   end
   
   def show

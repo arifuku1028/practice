@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'relationships/create'
+  get 'relationships/destroy'
   root 'tweets#index'
   
   devise_for :users
@@ -9,7 +11,11 @@ Rails.application.routes.draw do
     resources :comments, only:[:new, :create, :index, :show]
   end
   
-  resources :users
+  resources :users do
+    resource :relationships, only: [:create, :destroy]
+    get :follows, on: :member
+    get :followers, on: :member
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
