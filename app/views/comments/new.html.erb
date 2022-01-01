@@ -1,0 +1,12 @@
+<h1>Comments#new</h1>
+<p>Find me in app/views/comments/new.html.erb</p>
+<p><span>ツイート内容: </span><%= link_to @tweet.body, tweet_path(id: @tweet.id) %></p>
+<hr>
+
+<%= form_for [@tweet, @comment] do |f| %>
+  <p>
+    <%= f.label :body,"コメント" %>
+    <%= f.text_field :body %>
+  </p>
+  <%= f.submit %>
+<% end %>

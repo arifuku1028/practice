@@ -3,13 +3,29 @@
 
 <hr>
 <p><span>email: </span><%= @user.email %></p>
+<br>
 
+<p>ツイート一覧</p>
 <% @tweets.each do  |tweet| %>
   <hr>
   <p><span>ツイート内容: </span><%= link_to tweet.body, tweet_path(id: tweet.id) %></p>
 <% end %>
+<hr>
+<br>
 
+<p>お気に入りツイート一覧</p>
 <% @favorite_tweets.each do |tweet| %>
   <hr>
   <p><span>お気に入りツイート内容: </span><%= link_to tweet.body, tweet_path(id: tweet.id) %></p>
+<% end %>
+<hr>
+<br>
+
+<p>コメント一覧</p>
+<% @comment_tweets.each do |tweet| %>
+  <hr>
+  <p>
+    <span>コメント内容: </span>
+    <%= link_to Comment.find_by(tweet_id: tweet.id, user_id: @user.id).body, tweet_comments_path(tweet_id: tweet.id) %>
+  </p>
 <% end %>

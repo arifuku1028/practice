@@ -1,0 +1,19 @@
+<h1>Comments#show</h1>
+<p>Find me in app/views/comments/show.html.erb</p>
+
+<p>
+  <span>コメント元のツイート内容: </span><%= link_to @tweet.body, tweet_path(id: @tweet.id) %>
+<% if user_signed_in? %>
+  <span>　</span>
+  <%= link_to "コメントする", new_tweet_comment_path(tweet_id: @tweet.id) %>
+<% end %>
+</p>
+<hr>
+
+<br>
+<p><span>email: </span><%= link_to @comment.user.email, user_path(id: @comment.user.id) %></p>
+<p><span>コメント内容: </span><%= @comment.body %></p>
+<hr>
+
+
+
