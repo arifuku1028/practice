@@ -4,6 +4,11 @@
 <hr>
 <p><span>email: </span><%= @user.email %></p>
 <p><span>ツイート内容: </span><%= @tweet.body %></p>
+
+<% if @tweet_path %>
+  <p><%= image_tag @image_path, class: "tweet_img" %></p>
+<% end %>
+
 <p><%= link_to "コメントする", new_tweet_comment_path(tweet_id: @tweet.id) %></p>
 <% if current_user != @tweet.user %>
   <% if @tweet.user.followed_by?(current_user) %>
