@@ -2,31 +2,42 @@
 <p>Find me in app/views/tweets/show.html.erb</p>
 
 <hr>
-<p><span>email: </span><%= @user.email %></p>
+<p><span>email: </span><%= link_to @user.email, user_path(id: @user.id) %></p>
 <p><span>ツイート内容: </span><%= @tweet.body %></p>
-
 <% if @tweet.image.attached? %>
   <p><%= image_tag @tweet.image, class: "tweet_img" %></p>
 <% end %>
 
-<p><%= link_to "コメントする", new_tweet_comment_path(tweet_id: @tweet.id) %></p>
-<% if current_user != @tweet.user %>
-  <% if @tweet.user.followed_by?(current_user) %>
-    <p><%= link_to "フォロー済み", user_relationships_path(user_id: @tweet.user.id), method: :delete %></p>
-  <% else %>
-    <p><%= link_to "フォローする", user_relationships_path(user_id: @tweet.user.id), method: :post %></p>
-  <% end %>
+<% if user_signed_in? %>
+  <p>
+    <%= link_to "コメント一覧（#{@tweet.comments.count}件）", tweet_comments_path(tweet_id: @tweet.id) %>
+    <%= link_to "コメントする", new_tweet_comment_path(tweet_id: @tweet.id) %>
+  </p>
+  <p>
+    <%= "お気に入り数#{@tweet.favorites.count}：" %>
+    <% if @tweet.favorited_by?(current_user) %>
+      <%=link_to "お気に入り解除", tweet_favorites_path(tweet_id: @tweet.id), method: :delete %>
+    <% else %>
+      <%=link_to "お気に入り登録", tweet_favorites_path(tweet_id: @tweet.id), method: :post %>
+    <% end %>
+  </p>
 <% end %>
-<hr>
-<br>
 
-<p>
-  <span>コメント一覧（コメント数: </span>
-  <%= @tweet.comments.count %>
-  <span>）</span>
+  
+  <% if current_user != @tweet.user %>
+    <% if @tweet.user.followed_by?(current_user) %>
+      <%= link_to "フォロー済み", user_relationships_path(user_id: @tweet.user.id), method: :delete %>
+    <% else %>
+      <%= link_to "フォローする", user_relationships_path(user_id: @tweet.user.id), method: :post %>
+    <% end %>
+  <% end %>
 </p>
-<% @comments.each do |comment| %>
-  <hr>
-  <p><span>email: </span><%= link_to comment.user.email, user_path(id: comment.user.id) %></p>
-  <p><span>コメント内容: </span><%= comment.body %></p>
+<% if current_user == @tweet.user %>
+  <p>
+    <%= link_to "編集する", edit_tweet_path(id: @tweet.id) %>
+    <%= link_to "削除する", tweet_path(id: @tweet.id),method: :delete, data: { confirm: "削除しますか？" } %>
+  </p>
 <% end %>
+
+<br>
+<%= link_to "ツイート一覧に戻る", tweets_path %>

@@ -2,18 +2,24 @@
 <p>Find me in app/views/comments/show.html.erb</p>
 
 <p>
-  <span>コメント元のツイート内容: </span><%= link_to @tweet.body, tweet_path(id: @tweet.id) %>
-<% if user_signed_in? %>
-  <span>　</span>
-  <%= link_to "コメントする", new_tweet_comment_path(tweet_id: @tweet.id) %>
-<% end %>
+  <span>コメント元のツイート内容：</span>
+  <%= link_to @tweet.body, tweet_path(id: @tweet.id) %>
+  <% if @tweet.image.attached? %>
+    【画像投稿あり】
+  <% end %>
+  <%= "（ツイートユーザー：#{@tweet.user.email}）" %>
 </p>
-<hr>
-
 <br>
+
 <p><span>email: </span><%= link_to @comment.user.email, user_path(id: @comment.user.id) %></p>
 <p><span>コメント内容: </span><%= @comment.body %></p>
-<hr>
 
+<% if current_user == @comment.user %>
+  <p>
+    <%= link_to "編集する", edit_tweet_comment_path(tweet_id: @tweet.id, id: @comment.id ) %>
+    <%= link_to "削除する", tweet_comment_path(tweet_id: @tweet.id, id: @comment.id), method: :delete, data: { confirm: "削除しますか？" } %>
+  </p>
+<% end %>
 
-
+<br>
+<%= link_to "コメント一覧に戻る", tweet_comments_path(tweet_id: @tweet.id) %>

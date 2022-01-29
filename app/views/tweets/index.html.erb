@@ -4,33 +4,18 @@
 <% @tweets.each do |tweet| %>
 
   <hr>
-  <p><span>email: </span><%= link_to tweet.user.email, user_path(id: tweet.user.id) %></p>
-  <p><span>ツイート内容: </span><%=link_to tweet.body, tweet_path(id: tweet.id) %></p>
-
-  <p><%= link_to "コメントする", new_tweet_comment_path(tweet_id: tweet.id) %></p>
-  <p><span>コメント数: </span><%= link_to tweet.comments.count, tweet_comments_path(tweet_id: tweet.id) %></p>
-
-  <% if user_signed_in? %>
-  
-    <% if tweet.favorited_by?(current_user) %>
-      <p><span>お気に入り解除: </span><%=link_to tweet.favorites.count, tweet_favorites_path(tweet_id: tweet.id), method: :delete %></p>
-    <% else %>
-      <p><span>お気に入り登録: </span><%=link_to tweet.favorites.count, tweet_favorites_path(tweet_id: tweet.id), method: :post %></p>
+  <p><span>email: </span><%= tweet.user.email %></p>
+  <p>
+    <span>ツイート内容: </span><%=link_to tweet.body, tweet_path(id: tweet.id) %>
+    <% if tweet.image.attached? %>
+      【画像投稿あり】
     <% end %>
-    
-    <% if current_user != tweet.user %>
-      <% if tweet.user.followed_by?(current_user) %>
-        <p><%= link_to "フォロー済み", user_relationships_path(user_id: tweet.user.id), method: :delete %></p>
-      <% else %>
-        <p><%= link_to "フォローする", user_relationships_path(user_id: tweet.user.id), method: :post %></p>
-      <% end %>
-    <% end %>
-  
-  <% else %>
-  
-    <p><span>お気に入り数: </span><%= tweet.favorites.count %></p>
-  
-  <% end %>
+  </p>
+ 
+  <p>
+    <%= "コメント数: #{tweet.comments.count}　" %>
+    <%= "お気に入り数: #{tweet.favorites.count}" %>
+  </p>
   
 <% end %>
 <hr>

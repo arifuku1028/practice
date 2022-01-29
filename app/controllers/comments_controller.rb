@@ -21,6 +21,24 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @tweet = @comment.tweet
   end
+
+  def edit
+    @comment = Comment.find(params[:id])
+    @tweet = @comment.tweet
+  end
+  
+  def update
+    comment = Comment.find(params[:id])
+    comment.body = comment_params[:body]
+    comment.save
+    redirect_to tweet_comments_path(tweet_id: comment.tweet_id)
+  end
+  
+  def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    redirect_to tweet_comments_path(tweet_id: comment.tweet_id)
+  end
   
   private
   def comment_params
