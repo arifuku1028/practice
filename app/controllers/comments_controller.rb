@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
   def index
     @tweet = Tweet.find(params[:tweet_id])
-    @comments = Comment.where(tweet_id: @tweet.id)
+    @comments = @tweet.comments
   end
   
   def show
@@ -29,8 +29,7 @@ class CommentsController < ApplicationController
   
   def update
     comment = Comment.find(params[:id])
-    comment.body = comment_params[:body]
-    comment.save
+    comment.update(comment_params)
     redirect_to tweet_comments_path(tweet_id: comment.tweet_id)
   end
   
