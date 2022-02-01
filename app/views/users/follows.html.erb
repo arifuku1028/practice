@@ -1,0 +1,9 @@
+<h1>Users#follows</h1>
+<p>Find me in app/views/users/follows.html.erb</p>
+
+<p><%= link_to @following_user.email, user_path(id: @following_user.id)%>のフォロー一覧</p>
+
+<% @users.each do |user| %>
+  <hr>
+  <p><span>email: </span><%= link_to user.email, user_path(id: user.id) %></p>
+<% end %>

@@ -1,0 +1,17 @@
+<h1>Tweets#edit</h1>
+<p>Find me in app/views/tweets/edit.html.erb</p>
+
+<%= form_for @tweet do |f| %>
+  <p>
+    <%= f.label :body,"ツイート" %>
+    <%= f.text_field :body, value: @tweet.body %>
+  </p>
+  <% if @tweet.image.attached? %>
+    <p><%= image_tag @tweet.image, class: "tweet_img" %></p>
+  <% end %>
+  <p>
+    <%= f.label :image, "画像" %>
+    <%= f.file_field :image, value: @tweet.image %>
+  </p>
+  <%= f.submit %>
+<% end %>

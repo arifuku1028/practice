@@ -30,3 +30,10 @@ end
 
 # Windows ではタイムゾーン情報用の tzinfo-data gem を含める必要があります
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'devise'
+
+gem 'unicorn'
+
+#gem 'aws-sdk-s3', require: false
+gem 'aws-sdk-s3', require: false

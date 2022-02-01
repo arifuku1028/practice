@@ -1,0 +1,21 @@
+<h1>Tweets#index</h1>
+<p>Find me in app/views/tweets/index.html.erb</p>
+
+<% @tweets.each do |tweet| %>
+
+  <hr>
+  <p><span>email: </span><%= tweet.user.email %></p>
+  <p>
+    <span>ツイート内容: </span><%=link_to tweet.body, tweet_path(id: tweet.id) %>
+    <% if tweet.image.attached? %>
+      【画像投稿あり】
+    <% end %>
+  </p>
+ 
+  <p>
+    <%= "コメント数: #{tweet.comments.count}　" %>
+    <%= "お気に入り数: #{tweet.favorites.count}" %>
+  </p>
+  
+<% end %>
+<hr>

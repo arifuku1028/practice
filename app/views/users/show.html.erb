@@ -1,0 +1,57 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+
+<hr>
+<p>
+  <span>email: </span><%= @user.email %>
+  <% if current_user != @user %>
+    <% if @user.followed_by?(current_user) %>
+      <%= link_to "フォロー解除", user_relationships_path(user_id: @user.id), method: :delete %>
+    <% else %>
+      <%= link_to "フォローする", user_relationships_path(user_id: @user.id), method: :post %>
+    <% end %>
+  <% end %>
+</p>
+<p><%= link_to "フォロワー一覧（#{@user.followers.count}）", followers_user_path(id: @user.id) %></p>
+<p><%= link_to "フォロー一覧（#{@user.followings.count}）", follows_user_path(id: @user.id) %></p>
+<br>
+
+<p>ツイート一覧</p>
+<% @tweets.each do  |tweet| %>
+  <hr>
+  <p>
+    <span>ツイート内容: </span>
+    <%= link_to tweet.body, tweet_path(id: tweet.id) %>
+    <% if tweet.image.attached? %>
+      【画像投稿あり】
+    <% end %>
+  </p>
+<% end %>
+<hr>
+<br>
+
+<p>お気に入りツイート一覧</p>
+<% @favorite_tweets.each do |tweet| %>
+  <hr>
+  <p>
+    <span>お気に入りツイート内容: </span>
+    <%= link_to tweet.body, tweet_path(id: tweet.id) %>
+    <% if tweet.image.attached? %>
+      【画像投稿あり】
+    <% end %>
+  </p>
+<% end %>
+<hr>
+<br>
+
+<p>コメント一覧</p>
+<% @comment_tweets.each do |tweet| %>
+  <hr>
+  <p>
+    <span>コメント内容: </span>
+    <%= link_to Comment.find_by(tweet_id: tweet.id, user_id: @user.id).body, tweet_comment_path(tweet_id: tweet.id) %>
+    <% if tweet.image.attached? %>
+      【画像投稿あり】
+    <% end %>
+  </p>
+<% end %>

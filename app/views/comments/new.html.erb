@@ -1,0 +1,20 @@
+<h1>Comments#new</h1>
+<p>Find me in app/views/comments/new.html.erb</p>
+
+<p>
+  <span>コメント元のツイート内容：</span>
+  <%= link_to @tweet.body, tweet_path(id: @tweet.id) %>
+  <% if @tweet.image.attached? %>
+    【画像投稿あり】
+  <% end %>
+  <%= "（ツイートユーザー：#{@tweet.user.email}）" %>
+</p>
+<br>
+
+<%= form_for [@tweet, @comment] do |f| %>
+  <p>
+    <%= f.label :body,"コメント" %>
+    <%= f.text_field :body %>
+  </p>
+  <%= f.submit %>
+<% end %>

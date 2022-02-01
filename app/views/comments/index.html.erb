@@ -1,0 +1,23 @@
+<h1>Comments#index</h1>
+<p>Find me in app/views/comments/index.html.erb</p>
+
+<p>
+  <span>コメント元のツイート内容：</span>
+  <%= link_to @tweet.body, tweet_path(id: @tweet.id) %>
+  <% if @tweet.image.attached? %>
+    【画像投稿あり】
+  <% end %>
+  <%= "（ツイートユーザー：#{@tweet.user.email}）" %>
+</p>
+<br>
+
+<p><%= "コメント一覧（コメント数：#{@comments.count}件）" %></p>
+<% @comments.each do |comment| %>
+  <hr>
+  <p><span>email: </span><%= comment.user.email %></p>
+  <p><span>コメント内容: </span><%= link_to comment.body, tweet_comment_path(id: comment.id) %></p>
+<% end %>
+
+<br>
+
+
