@@ -11,6 +11,7 @@
 <% if user_signed_in? %>
   <p>
     <%= link_to "コメント一覧（#{@tweet.comments.count}件）", tweet_comments_path(tweet_id: @tweet.id) %>
+    ：
     <%= link_to "コメントする", new_tweet_comment_path(tweet_id: @tweet.id) %>
   </p>
   <p>
@@ -23,15 +24,6 @@
   </p>
 <% end %>
 
-  
-  <% if current_user != @tweet.user %>
-    <% if @tweet.user.followed_by?(current_user) %>
-      <%= link_to "フォロー済み", user_relationships_path(user_id: @tweet.user.id), method: :delete %>
-    <% else %>
-      <%= link_to "フォローする", user_relationships_path(user_id: @tweet.user.id), method: :post %>
-    <% end %>
-  <% end %>
-</p>
 <% if current_user == @tweet.user %>
   <p>
     <%= link_to "編集する", edit_tweet_path(id: @tweet.id) %>
