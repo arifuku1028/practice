@@ -15,7 +15,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: admin
   password: "password"
-  host: my-rds.ctpww6dmuxlb.ap-northeast-1.rds.amazonaws.com
+  host: practice-rds.ctpww6dmuxlb.ap-northeast-1.rds.amazonaws.com
   socket: /var/lib/mysql/mysql.sock
 
 development:
