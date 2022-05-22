@@ -1,24 +1,24 @@
-# README
+# Rails App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+Ruby on Railsで作成した簡易ツイートアプリ（CRUD処理を実装）
 
-Things you may want to cover:
+## アプリ機能
+- ログイン機能
+  - メールアドレス・パスワードでのユーザー作成・ログイン
+  - ログインしていない場合、ツイート等の閲覧のみに制限
+  - ユーザーの一覧表示、詳細情報表示に対応
+- ツイート機能
+  - ツイートの投稿、編集、削除、一覧表示に対応
+  - ツイート投稿では、画像ファイルの添付が可能
+- お気に入り機能
+  - ツイートのお気に入り登録/解除に対応
+- コメント機能
+  - ツイートに対するコメントの投稿、編集、削除、一覧表示に対応
+- フォロー/フォロワー機能
+  - ユーザーに対するフォロー登録/解除に対応
+  - フォローされたユーザーにはフォロワー情報を付加
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## AWSとの連携
+- データベースはAmazon RDS for MySQLに接続
+- 投稿画像はAmazon S3に保存
