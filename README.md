@@ -26,17 +26,17 @@ Ruby on Railsで作成した簡易ツイートアプリ（CRUD処理を実装）
 ## 実行画面
 - ログイン画面  
 ![ログイン画面](./screnshots/login.png)
-- ツイート一覧画面
+- ツイート一覧画面  
 ![ツイート一覧画面](./screnshots/tweets.png)
-- ツイート投稿画面
+- ツイート投稿画面  
 ![ツイート投稿画面](./screnshots/new_tweet.png)
-- ツイート詳細画面
+- ツイート詳細画面  
 ![ツイート詳細画面](./screnshots/tweet.png)
-- コメント一覧画面
+- コメント一覧画面  
 ![コメント一覧画面](./screnshots/comments.png)
-- コメント詳細画面
+- コメント詳細画面  
 ![コメント詳細画面](./screnshots/comment.png)
-- ユーザー一覧画面
+- ユーザー一覧画面  
 ![ユーザー一覧画面](./screnshots/users.png)
-- ユーザー詳細画面
+- ユーザー詳細画面  
 ![ユーザー詳細画面](./screnshots/user.png)
