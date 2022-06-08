@@ -1,7 +1,8 @@
 # Rails App
 
 ## 概要
-Ruby on Railsで作成した簡易ツイートアプリ（CRUD処理を実装）
+Ruby on Railsで作成した簡易ツイートアプリ（CRUD処理を実装）  
+参考にした記事：https://qiita.com/kazukimatsumoto/items/14bdff681ec5ddac26d1
 
 ## アプリ機能
 - ログイン機能
